@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 
 public interface JuegosRepository extends JpaRepository<Juegos,Integer> {
-     /** Completar */
+
 }
