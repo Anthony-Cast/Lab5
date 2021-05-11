@@ -48,6 +48,20 @@ public class JuegosController {
         return "juegos/editarFrm";
     }
 
+    @GetMapping("/editar")
+    public String editarJuegos(Model model, @RequestParam("id") int id, @ModelAttribute("product") Juegos juego){
+        Optional<Juegos> optJuegos = juegosRepository.findById(id);
+        if(optJuegos.isPresent()){
+            juego = optJuegos.get();
+            model.addAttribute("juego", juego);
+            model.addAttribute("listaPlataformas", plataformasRepository.findAll());
+            return "juegos/editarFrm";
+        } else {
+            return "redirect:/juegos";
+        }
+
+    }
+
     @GetMapping("/borrar")
     public String borrarDistribuidora(@RequestParam("id") int id){
         Optional<Juegos> opt = juegosRepository.findById(id);
