@@ -24,33 +24,28 @@ import java.util.Optional;
 @RequestMapping("/juegos")
 public class JuegosController {
 
-
+    @Autowired
+    PlataformasRepository plataformasRepository;
+    @Autowired
+    JuegosRepository juegosRepository;
 
     @GetMapping("/lista")
-    public String listaJuegos ( ... ){
-               /** Completar */
+    public String listaJuegos (Model model){
+        model.addAttribute("");
+        return "juegos/comprado";
     }
 
     @GetMapping(value = {"", "/", "/vista"})
-    public String vistaJuegos ( ... ){
-               /** Completar */
+    public String vistaJuegos (Model model ){
+        List<Juegos> listaJuegos = juegosRepository.listaJuegosDesc();
+        model.addAttribute("listaJuegos", listaJuegos);
+        return "juegos/vista";
     }
 
     @GetMapping("/nuevo")
     public String nuevoJuegos(Model model, @ModelAttribute("juego") Juegos juego){
-               /** Completar */
-    }
-
-    @GetMapping("/editar")
-    public String editarJuegos(@RequestParam("id") int id, Model model){
-                /** Completar */
-
-    }
-
-    @PostMapping("/guardar")
-    public String guardarJuegos(Model model, RedirectAttributes attr, @ModelAttribute("juego") @Valid Juegos juego, BindingResult bindingResult ){
-                /** Completar */
-
+        model.addAttribute("listaPlataformas", plataformasRepository.findAll());
+        return "juegos/editarFrm";
     }
 
     @GetMapping("/borrar")
