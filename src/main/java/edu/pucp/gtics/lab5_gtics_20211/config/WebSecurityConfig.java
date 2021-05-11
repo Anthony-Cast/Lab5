@@ -17,12 +17,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/user/signIn").loginProcessingUrl("/processLogin")
-                .usernameParameter("correo").defaultSuccessUrl("/user/signInRedirect",true);
+        http.formLogin()
+                .loginPage("/signIn")
+                .loginProcessingUrl("/processLogin")
+                .usernameParameter("correo")
+                .defaultSuccessUrl("/signInRedirect",true);
 
                 http.authorizeRequests()
-                        .antMatchers("/gameshop3/plataformas/**","/gameshop3/juegos/nuevo","/gameshop3/juegos/editar","/gameshop3/juegos/guardar","/gameshop3/juegos/borrar").hasAuthority("ADMIN")
-                        .antMatchers("/gameshop3/juegos/lista").hasAuthority("USER")
+                        .antMatchers("/plataformas/**","/juegos/nuevo","/juegos/editar","/juegos/guardar","/juegos/borrar","/juegos/lista").hasAuthority("ADMIN")
+                        .antMatchers("/juegos/lista").hasAuthority("USER")
                         .anyRequest().permitAll();
                 http.logout()
                         .logoutSuccessUrl("/")

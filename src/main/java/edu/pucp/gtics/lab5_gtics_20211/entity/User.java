@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Table(name="usuarios")
 public class User implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idusuario;
     private String apellidos;
     private String nombres;

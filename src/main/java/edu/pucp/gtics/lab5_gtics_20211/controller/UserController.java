@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -39,9 +38,9 @@ public class UserController {
             rol = role.getAuthority();
             break;
         }
-        User usuarioLogueado=userRepository.findByCorreo(auth.getName());
+        User usuarioLogueado=userRepository.obtenerUsuario(auth.getName());
+        System.out.println(auth.getName());
         session.setAttribute("usuario",usuarioLogueado);
         return "redirect:/juegos/lista";
     }
-
 }
