@@ -42,6 +42,12 @@ public class JuegosController {
         return "juegos/vista";
     }
 
+    @GetMapping("/nuevo")
+    public String nuevoJuegos(Model model, @ModelAttribute("juego") Juegos juego){
+        model.addAttribute("listaPlataformas", plataformasRepository.findAll());
+        return "juegos/editarFrm";
+    }
+
     @GetMapping("/borrar")
     public String borrarDistribuidora(@RequestParam("id") int id){
         Optional<Juegos> opt = juegosRepository.findById(id);
