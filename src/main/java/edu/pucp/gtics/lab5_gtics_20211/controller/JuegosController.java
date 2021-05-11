@@ -48,6 +48,25 @@ public class JuegosController {
         return "juegos/editarFrm";
     }
 
+
+    @PostMapping("/guardar")
+    public String guardarJuegos(Model model, RedirectAttributes attr, @ModelAttribute("juego") @Valid Juegos juego, BindingResult bindingResult ){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("listaPlataformas", plataformasRepository.findAll());
+            return "juegos/editarFrm";
+        }else {
+
+            if (juego.getIdjuego() == 0) {
+                attr.addFlashAttribute("msg", "Juego creado exitosamente");
+            } else {
+                attr.addFlashAttribute("msg", "Juego actualizado exitosamente");
+            }
+            juegosRepository.save(juego);
+            return "redirect:/juegos";
+        }
+
+    }
+
     @GetMapping("/editar")
     public String editarJuegos(Model model, @RequestParam("id") int id, @ModelAttribute("product") Juegos juego){
         Optional<Juegos> optJuegos = juegosRepository.findById(id);
