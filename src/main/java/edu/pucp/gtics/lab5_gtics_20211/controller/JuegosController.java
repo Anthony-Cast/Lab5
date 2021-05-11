@@ -37,12 +37,7 @@ public class JuegosController {
     @GetMapping(value = {"", "/", "/vista"})
     public String vistaJuegos (Model model ){
         List<Juegos> listaJuegos = juegosRepository.listaJuegosDesc();
-        model.addAttribute("listaJuegos", listaJuegos");
-        return "juegos/vista";
-    }
-
-    @GetMapping(value = {"", "/", "/vista"})
-    public String vistaJuegos (Model model ){
+        model.addAttribute("listaJuegos", listaJuegos);
         return "juegos/vista";
     }
 
