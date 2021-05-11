@@ -5,45 +5,37 @@
 </head>
 <body>
 <div th:fragment="header(option)">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4" th:fragment="navbar (active)">
         <a class="navbar-brand" th:href="@{/}">
-            <img th:src="@{/img/icon.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            GameShop3 [Lab 5]
+            <img th:src="@{/img/icon.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">GameShop3 [Lab 5]
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app" aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app"
+                aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-star" id="navbar-app">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="...">Juegos</a>
-                </li>
+
+        <div sec:authorize="isAuthenticated()" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/plataformas/lista}">Plataformas</a>
+                    <a class="nav-link" th:href="@{/juegos}">Juegos</a>
+                </li>
+                <li sec:authorize="hasAnyAuthority('ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/plataformas}">Plataformas</a>
                 </li>
             </ul>
         </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navbar-app">
-           <!-- <ul  class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" >Ingresar</a>
-                </li>
-            </ul> -->
-            <ul  class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i><span> (Enrique Larios)</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <form class="form-inline my-2 my-lg-0" method="post">
-                                <button type="submit" class="btn btn-link btn-sm nav-link" style="color: #c82333; border-left-width: 0px; padding-left: 0px;">Cerrar Sesión</button>
-                            </form>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+
+        <div sec:authorize="isAnonymous()" class="form-inline my-2 my-lg-0 d-flex">
+            <a class="nav-link" th:href="@{/signIn}">Iniciar Sesión</a>
+        </div>
+
+        <div sec:authorize="isAuthenticated()" class="collapse navbar-collapse justify-content-end" id="navbar-app">
+            <div class="form-inline my-2 my-lg-0 d-flex">
+                <span th:text="|Bienvenido ${session.usuario.nombres} ${session.usuario.apellidos}|" class="navbar-text"></span>
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn btn-link" type="submit" value="(Cerrar Sesión)"/>
+                </form>
+            </div>
         </div>
     </nav>
 </div>
