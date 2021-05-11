@@ -33,7 +33,6 @@ public class JuegosController {
     @GetMapping("/lista")
     public String listaJuegos (Model model){
         model.addAttribute("listaJuegos", juegosRepository.findAll());
-        model.addAttribute("listaPlataformas", plataformasRepository.findAll());
         return "juegos/lista";
     }
 
@@ -70,7 +69,7 @@ public class JuegosController {
     }
 
     @GetMapping("/editar")
-    public String editarJuegos(Model model, @RequestParam("id") int id, @ModelAttribute("product") Juegos juego){
+    public String editarJuegos(Model model, @RequestParam("id") int id, @ModelAttribute("juego") Juegos juego){
         Optional<Juegos> optJuegos = juegosRepository.findById(id);
         if(optJuegos.isPresent()){
             juego = optJuegos.get();
@@ -84,10 +83,11 @@ public class JuegosController {
     }
 
     @GetMapping("/borrar")
-    public String borrarDistribuidora(@RequestParam("id") int id){
+    public String borrarDistribuidora(@RequestParam("id") int id, RedirectAttributes attr){
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {
             juegosRepository.deleteById(id);
+            attr.addFlashAttribute("msg2", "Juego borrado exitosamente");
         }
         return "redirect:/juegos/lista";
     }

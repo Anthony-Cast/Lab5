@@ -14,23 +14,24 @@
 
                 <a class="btn btn-primary mt-4 mb-4" th:href="@{'/juegos/nuevo'}">Nuevo Juego</a>
                 <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+                <div th:if="${msg2 != null}" th:text="${msg2}" class="alert alert-danger" role="alert"></div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th></th>
-                        <th style="width: 18%">Nombre</th>
-                        <th style="width: 32%">Descripción</th>
-                        <th style="width: 10%">Plataforma</th>
-                        <th style="width: 10%">Precio (S/)</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Plataforma</th>
+                        <th>Precio (S/)</th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr th:each="juego, i: ${listaJuegos}">
-                            <td th:text="${i.index + 1}"></td>
-                            <td><img class="card-img-top" th:src="${juego.image}"></td>
+                            <td th:text="${i.index + 1}" >
+                            <td><img class="card-img-top" th:src="${juego.image}" alt="Card image cap"></td>
                             <td th:text="${juego.nombre}"></td>
                             <td th:text="${juego.descripcion}"></td>
                             <td th:text="${juego.plataforma.nombre}"></td>
