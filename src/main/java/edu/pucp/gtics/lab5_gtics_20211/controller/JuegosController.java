@@ -70,7 +70,7 @@ public class JuegosController {
             if (juego.getIdjuego() == 0) {
                 attr.addFlashAttribute("msg", "Juego creado exitosamente");
             } else {
-                attr.addFlashAttribute("msg", "Juego actualizado exitosamente");
+                attr.addFlashAttribute("msg2", "Juego actualizado exitosamente");
             }
             juegosRepository.save(juego);
             return "redirect:/juegos/lista";
@@ -97,7 +97,7 @@ public class JuegosController {
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {
             juegosRepository.deleteById(id);
-            attr.addFlashAttribute("msg2", "Juego borrado exitosamente");
+            attr.addFlashAttribute("msg3", "Juego borrado exitosamente");
         }
         return "redirect:/juegos/lista";
     }
