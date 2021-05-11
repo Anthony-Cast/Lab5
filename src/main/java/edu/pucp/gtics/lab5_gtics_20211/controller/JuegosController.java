@@ -26,6 +26,7 @@ public class JuegosController {
 
     @Autowired
     PlataformasRepository plataformasRepository;
+
     @Autowired
     JuegosRepository juegosRepository;
 
