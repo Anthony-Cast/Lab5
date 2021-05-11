@@ -36,7 +36,7 @@ public class JuegosController {
 
         User sessionUser = (User) session.getAttribute("usuario");
         if(sessionUser.getAutorizacion().equals("ADMIN")) {
-            System.out.println("SOY ADMIN");
+
             model.addAttribute("listaJuegos", juegosRepository.findAll());
             return "juegos/lista";
         }else{
