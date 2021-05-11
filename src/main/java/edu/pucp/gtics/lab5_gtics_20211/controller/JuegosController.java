@@ -25,8 +25,9 @@ import java.util.Optional;
 public class JuegosController {
 
 
-
-    @GetMapping( ... )
+    @Autowired
+    JuegosRepository juegosRepository;
+    @GetMapping("/lista")
     public String listaJuegos ( ... ){
                /** Completar */
     }
