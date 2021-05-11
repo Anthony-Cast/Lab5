@@ -11,7 +11,7 @@
             <h2 th:text="${juego.idjuego == 0? 'Nuevo Juego' : 'Editar Juego'}"></h2>
         </div>
         <div class="container-fluid">
-                <form method="POST" th:action="@{'juegos/guardar'}" th:object="${juego}">
+                <form method="POST" th:action="@{/juegos/guardar}" th:object="${juego}">
                     <input th:field="*{idjuego}" type = "hidden">
                     <div class="form-group">
                         <label>Nombre</label>
@@ -47,7 +47,7 @@
                         
                     </div>
                     <a th:href="@{/juegos/lista}" class="btn btn-danger">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="submit" class="btn btn-primary" th:text="${juego.idjuego == 0? 'Registrar' : 'Actualizar'}"></button>
                 </form>
         </div>
         </main>
