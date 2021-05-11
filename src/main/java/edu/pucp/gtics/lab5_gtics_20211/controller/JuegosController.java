@@ -21,12 +21,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-
+@RequestMapping("/juegos")
 public class JuegosController {
 
 
 
-    @GetMapping( ... )
+    @GetMapping("/lista")
     public String listaJuegos ( ... ){
                /** Completar */
     }
@@ -36,24 +36,24 @@ public class JuegosController {
                /** Completar */
     }
 
-    @GetMapping( ... )
+    @GetMapping("/nuevo")
     public String nuevoJuegos(Model model, @ModelAttribute("juego") Juegos juego){
                /** Completar */
     }
 
-    @GetMapping( ... )
+    @GetMapping("/editar")
     public String editarJuegos(@RequestParam("id") int id, Model model){
                 /** Completar */
 
     }
 
-    @PostMapping( ... )
+    @PostMapping("/guardar")
     public String guardarJuegos(Model model, RedirectAttributes attr, @ModelAttribute("juego") @Valid Juegos juego, BindingResult bindingResult ){
                 /** Completar */
 
     }
 
-    @GetMapping("/juegos/borrar")
+    @GetMapping("/borrar")
     public String borrarDistribuidora(@RequestParam("id") int id){
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {
