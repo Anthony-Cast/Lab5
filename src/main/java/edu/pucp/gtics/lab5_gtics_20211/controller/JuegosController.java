@@ -31,8 +31,9 @@ public class JuegosController {
 
     @GetMapping("/lista")
     public String listaJuegos (Model model){
-        model.addAttribute("");
-        return "juegos/comprado";
+        model.addAttribute("listaJuegos", juegosRepository.findAll());
+        model.addAttribute("listaPlataformas", plataformasRepository.findAll());
+        return "juegos/lista";
     }
 
     @GetMapping(value = {"", "/", "/vista"})
