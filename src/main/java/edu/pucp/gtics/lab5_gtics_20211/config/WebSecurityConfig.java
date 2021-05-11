@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/juegos/lista").hasAnyAuthority("ADMIN","USER")
                         .anyRequest().permitAll();
                 http.logout()
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/juegos/vista")
                         .deleteCookies("JSESSIONID")
                         .invalidateHttpSession(true);
 
