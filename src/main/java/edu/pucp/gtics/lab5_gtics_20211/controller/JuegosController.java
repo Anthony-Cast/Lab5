@@ -42,7 +42,7 @@ public class JuegosController {
         return "juegos/vista";
     }
 
-    @GetMapping("/juegos/borrar")
+    @GetMapping("/borrar")
     public String borrarDistribuidora(@RequestParam("id") int id){
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {
