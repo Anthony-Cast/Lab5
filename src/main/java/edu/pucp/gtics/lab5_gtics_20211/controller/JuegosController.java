@@ -62,7 +62,7 @@ public class JuegosController {
                 attr.addFlashAttribute("msg", "Juego actualizado exitosamente");
             }
             juegosRepository.save(juego);
-            return "redirect:/juegos";
+            return "redirect:/juegos/lista";
         }
 
     }
@@ -76,7 +76,7 @@ public class JuegosController {
             model.addAttribute("listaPlataformas", plataformasRepository.findAll());
             return "juegos/editarFrm";
         } else {
-            return "redirect:/juegos";
+            return "redirect:/juegos/lista";
         }
 
     }
