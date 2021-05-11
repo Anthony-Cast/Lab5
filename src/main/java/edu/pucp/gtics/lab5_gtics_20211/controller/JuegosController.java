@@ -27,31 +27,10 @@ public class JuegosController {
 
     @Autowired
     JuegosRepository juegosRepository;
-    @GetMapping("/lista")
-    public String listaJuegos ( ... ){
-               /** Completar */
-    }
 
     @GetMapping(value = {"", "/", "/vista"})
-    public String vistaJuegos ( ... ){
-               /** Completar */
-    }
-
-    @GetMapping( ... )
-    public String nuevoJuegos(Model model, @ModelAttribute("juego") Juegos juego){
-               /** Completar */
-    }
-
-    @GetMapping( ... )
-    public String editarJuegos(@RequestParam("id") int id, Model model){
-                /** Completar */
-
-    }
-
-    @PostMapping( ... )
-    public String guardarJuegos(Model model, RedirectAttributes attr, @ModelAttribute("juego") @Valid Juegos juego, BindingResult bindingResult ){
-                /** Completar */
-
+    public String vistaJuegos (Model model ){
+        return "juegos/vista";
     }
 
     @GetMapping("/juegos/borrar")

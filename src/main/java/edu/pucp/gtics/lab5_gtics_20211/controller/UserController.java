@@ -22,18 +22,5 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
-
-    @GetMapping()
-    public String signIn(){
-       /** Completar */
-    }
-
-    @GetMapping()
-    public String signInRedirect(Authentication auth, HttpSession session){
-       /** Completar */
-
-    }
 
 }
