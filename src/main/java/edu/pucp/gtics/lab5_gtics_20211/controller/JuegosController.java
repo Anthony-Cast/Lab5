@@ -28,10 +28,21 @@ public class JuegosController {
     @Autowired
     JuegosRepository juegosRepository;
 
+    @GetMapping("/lista")
+    public String listaJuegos (Model model){
+        model.addAttribute("");
+        return "juegos/comprado";
+    }
+
     @GetMapping(value = {"", "/", "/vista"})
     public String vistaJuegos (Model model ){
         List<Juegos> listaJuegos = juegosRepository.listaJuegosDesc();
         model.addAttribute("listaJuegos", listaJuegos");
+        return "juegos/vista";
+    }
+
+    @GetMapping(value = {"", "/", "/vista"})
+    public String vistaJuegos (Model model ){
         return "juegos/vista";
     }
 
